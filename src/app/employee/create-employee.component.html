@@ -1,0 +1,83 @@
+<form
+  [formGroup]="employeeForm"
+  (ngSubmit)="onSubmit()"
+  class="form-horizontal"
+>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create Employee</h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="fullName">Full Name</label>
+        <div class="col-sm-8">
+          <input
+            id="fullName"
+            formControlName="fullName"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="email">Email</label>
+        <div class="col-sm-8">
+          <input
+            id="email"
+            formControlName="email"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div formGroupName="skills">
+        <div class="form-group">
+            <label class="my-3 col-sm-2 control-label" for="skillName">Skill</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" class="form-control" id="skillName" formControlName="skillName" />
+          </div>
+
+          <div class=" my-3 col-sm-4">
+            <input
+              type="text" class="form-control"
+              placeholder="Experience in Years"
+              id="experienceInYears"
+              formControlName="experienceInYears"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Proficiency</label>
+          <div class="col-md-8">
+            <label for="s1">Beginner</label>
+            <input type="radio" class=" mx-2 form-radio-control" value="beginner" id="s1" formControlName="proficiency" />
+            <label for="s2">Intermediate</label>
+          <input
+            type="radio"  id="s2" class=" mx-2 form-radio-control"
+            value="intermediate"
+            formControlName="proficiency"
+          />
+          <label for="s3" class="mx-2">Advanced</label>
+          <input type="radio"  id="s3" class="form-radio-control" value="advanced" formControlName="proficiency" />
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer mt-3">
+      <div class="btn-toolbar">
+        <button class="btn btn-primary mx-3" type="submit">Save</button>
+      <button class="btn btn-info" (click)="onLoadDataClick()" type="button">Load Data</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class=" container my-5 alert-danger">
+    {{employeeForm.value | json}}
+</div>
