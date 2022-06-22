@@ -9,7 +9,8 @@
     </div>
 
     <div class="panel-body">
-      <div class="form-group">
+
+      <div class="form-group" [ngClass]="{'has-error': (employeeForm.controls['fullName'].invalid) && (employeeForm.controls['fullName'].touched || employeeForm.controls['fullName'].dirty)}">
         <label class="col-sm-2 control-label" for="fullName">Full Name</label>
         <div class="col-sm-8">
           <input
@@ -18,6 +19,12 @@
             type="text"
             class="form-control"
           />
+          <span *ngIf="employeeForm.controls['fullName'].errors?.['required'] && (employeeForm.controls['fullName'].touched || employeeForm.controls['fullName'].dirty)">
+            Full Name is required
+          </span>
+          <span *ngIf="(employeeForm.controls['fullName'].errors?.['minlength'] || employeeForm.controls['fullName'].errors?.['maxlength']) && (employeeForm.controls['fullName'].touched || employeeForm.controls['fullName'].dirty)">
+            Full Name must be greater than 2 characters and less than 10 characters
+          </span>
         </div>
       </div>
 
@@ -80,4 +87,5 @@
 
 <div class=" container my-5 alert-danger">
     {{employeeForm.value | json}}
+    {{employeeForm.controls['fullName'].valid| json}}
 </div>
