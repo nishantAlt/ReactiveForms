@@ -7,3 +7,7 @@
 .has-error span{
     color: red;
 }
+
+hr{
+    border: 2px solid silver;
+}
